@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 
 const openai = new OpenAI({
-  apiKey: "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"
+  apiKey: "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"
 });
 
 // Use bodyParser middleware to parse JSON data in request bodies

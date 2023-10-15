@@ -1,39 +1,21 @@
 import React, { useState } from 'react';
 import './App.css';
 import WelcomeScreen from './components/WelcomeScreen';
+import PrivacyPolicyScreen from './components/PrivacyPolicyScreen';
+import ChatScreen from './components/ChatScreen';
+
 
 function App() {
-  const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
+  const [screen, setScreen] = useState('welcome');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:5000', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ message })
-    })
-      .then((res) => res.json())
-      .then((data) => setResponse(data.message))
-  }
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <WelcomeScreen/>
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
-        <button type="submit">Submit</button>
-      </form>
-      <div>{response}</div>
+      {screen === 'welcome' && <WelcomeScreen onGetStarted={() => setScreen('privacy')} />}
+      {screen === 'privacy' && <PrivacyPolicyScreen onAccept={() => setScreen('chat')} />}
+      {screen === 'chat' && <ChatScreen/>}
     </div>
   );
 }
 
 export default App;
-
-

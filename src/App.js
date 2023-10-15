@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import WelcomeScreen from './components/WelcomeScreen';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -21,6 +22,7 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
+        <WelcomeScreen/>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -33,3 +35,5 @@ function App() {
 }
 
 export default App;
+
+
